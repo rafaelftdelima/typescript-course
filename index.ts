@@ -1,29 +1,27 @@
-let product = 'Book';
-let price: number = 14.97;
+const input_text = document.querySelector('input');
 
-const car: {
-  color: string,
-  price: number,
-} = {
-  color: 'black',
-  price: 64549.97,
-};
+const total = localStorage.getItem('total');
 
-const isCheap: boolean | string = car.price < 75000 ? true : '???';
-
-function sum(a: number, b: number): number {
-  return a + b;
+if (input_text && total) {
+  input_text.value = total;
+  calculateBonus(Number(input_text.value));
 }
 
-sum(4, 7);
+function calculateBonus(value: number) {
+  const result_element = document.querySelector('p');
 
-const nintendo = {
-  name: 'Nintendo',
-  price: '2249.47',
-};
-
-function turnPrice(price: string): number {
-  return Number(price);
+  if (result_element) {
+    result_element.innerText = `ganho total: ${value + 100 - value * 0.2}`;
+  }
 }
 
-console.log(turnPrice(nintendo.price));
+function totalChanged() {
+  if (input_text) {
+    localStorage.setItem('total', input_text.value);
+    calculateBonus(Number(input_text.value));
+  }
+}
+
+if (input_text) {
+  input_text.addEventListener('keyup', totalChanged);
+}

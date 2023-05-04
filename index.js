@@ -1,20 +1,22 @@
 "use strict";
-let product = 'Book';
-let price = 14.97;
-const car = {
-    color: 'black',
-    price: 64549.97,
-};
-const isCheap = car.price < 75000 ? true : '???';
-function sum(a, b) {
-    return a + b;
+const input_text = document.querySelector('input');
+const total = localStorage.getItem('total');
+if (input_text && total) {
+    input_text.value = total;
+    calculateBonus(Number(input_text.value));
 }
-sum(4, 7);
-const nintendo = {
-    name: 'Nintendo',
-    price: '2249.47',
-};
-function turnPrice(price) {
-    return Number(price);
+function calculateBonus(value) {
+    const result_element = document.querySelector('p');
+    if (result_element) {
+        result_element.innerText = `ganho total: ${value + 100 - value * 0.2}`;
+    }
 }
-console.log(turnPrice(nintendo.price));
+function totalChanged() {
+    if (input_text) {
+        localStorage.setItem('total', input_text.value);
+        calculateBonus(Number(input_text.value));
+    }
+}
+if (input_text) {
+    input_text.addEventListener('keyup', totalChanged);
+}
