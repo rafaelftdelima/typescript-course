@@ -1,24 +1,11 @@
 "use strict";
-;
-;
-async function fetchProduct() {
-    const response = await fetch('https://api.origamid.dev/json/notebook.json');
-    const data = await response.json();
-    showProduct(data);
+const numbers = [10, 20, 30, 40, 50, 3];
+const values = [10, 'Tax', 30, 'Product', 50, 3];
+function greaterThan10(data) {
+    return data.filter((n) => n > 10);
 }
-function showProduct(data) {
-    document.body.innerHTML = `
-    <div>
-      <h2>${data.nome}</h2>
-      <p>${data.preco}</p>
-
-      <div>
-        <h3>${data.empresaFabricante.nome}</h3>
-      </div>
-      <div>
-        <h3>${data.empresaMontadora.nome}</h3>
-      </div>
-    </div>
-  `;
+function filterValues(data) {
+    return data.filter((n) => typeof n === 'number');
 }
-fetchProduct();
+console.log(greaterThan10(numbers));
+console.log(filterValues(values));
