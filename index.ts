@@ -1,5 +1,12 @@
-const link = document.querySelector('#origamid');
+const links = document.querySelectorAll('.link');
 
-if (link instanceof HTMLAnchorElement) {
-  link.protocol = 'https';
+function changeColorAndBorder(element: HTMLElement) {
+  element.style.color = '#fb5';
+  element.style.border = '2px solid #fb5';
 }
+
+links.forEach((link) => {
+  if (link instanceof HTMLElement) {
+    changeColorAndBorder(link);
+  }
+})
