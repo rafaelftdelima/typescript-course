@@ -1,13 +1,13 @@
-const button = document.querySelector('button');
+function activeMenu(event: Event) {
+  if (event instanceof MouseEvent) {
+    console.log(event.pageX);
+  }
 
-function handleClick(event: PointerEvent) {
-  console.log(event.pageX);
+  if (event instanceof TouchEvent) {
+    console.log(event.touches[0].pageX);
+  }
 }
 
-button?.addEventListener('pointerdown', handleClick);
-
-function handleScroll(event: Event) {
-  console.log(event);
-}
-
-window.addEventListener('scroll', handleScroll);
+document.documentElement.addEventListener('mousedown', activeMenu);
+document.documentElement.addEventListener('touchstart', activeMenu);
+window.addEventListener('keydown', activeMenu);
