@@ -1,11 +1,29 @@
 "use strict";
-const numbers = [10, 20, 30, 40, 50, 3];
-const values = [10, 'Tax', 30, 'Product', 50, 3];
-function greaterThan10(data) {
-    return data.filter((n) => n > 10);
+;
+function showCourses(data) {
+    const container = document.querySelector('div');
+    if (container) {
+        data.forEach((course) => {
+            container.innerHTML += `
+        <div class="item">
+          <h1${course.nivel === 'iniciante' ? ' class="free"' : ''}>${course.nome}</h1>
+          <div>
+            <p>${course.horas}hs</p>
+            ${course.gratuito ? '<p class="free">Gratuito</p>' : ''}
+          </div>
+          <ul>
+            ${course.tags.reduce((result, current) => {
+                return result += `<li>${current}</li>`;
+            }, '')}
+          </ul>
+        </div>
+      `;
+        });
+    }
 }
-function filterValues(data) {
-    return data.filter((n) => typeof n === 'number');
+async function fetchCourses() {
+    const response = await fetch('https://api.origamid.dev/json/cursos.json');
+    const data = await response.json();
+    showCourses(data);
 }
-console.log(greaterThan10(numbers));
-console.log(filterValues(values));
+fetchCourses();

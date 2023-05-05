@@ -8,17 +8,77 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Curso de TypeScript</title>
   <meta name="description" content="Anotações e resoluções de exercícios do curso TypeScript para Iniciantes, da escola de desenvolvimento frontend e web design Origamid.">
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      font-size: 16px;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+    }
+
+    body {
+      background: #f5f5f5;
+      display: flex;
+      height: 100vh;
+      justify-content: center;
+      align-items: center;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    div.container {
+      background: #fff;
+      display: flex;
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
+    }
+
+    div.item {
+      margin: 1.25rem;
+      max-width: 10rem;
+    }
+
+    div.item h1 {
+      color: red;
+    }
+
+    div.item h1.free {
+      color: blue;
+    }
+
+    div.item p {
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    div.item p.free {
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    div.item ul {
+      margin-top: 1.5rem;
+      display: flex;
+      gap: 0.5rem 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    div.item li {
+      background: #f5f5f5;
+      padding: 0.5rem;
+    }
+  </style>
 </head>
 
 <body>
-  <div class="container">
-    <h1>Bônus de 100 - 20%</h1>
-    
-    <label for="input-text">Total: </label>
-    <input id="input-text" type="text">
-
-    <p></p>
-  </div>
+  <div class="container"></div>
 
   <script src="./index.js"></script>
 </body>
