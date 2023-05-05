@@ -1,29 +1,32 @@
 "use strict";
-;
-function showCourses(data) {
-    const container = document.querySelector('div');
-    if (container) {
-        data.forEach((course) => {
-            container.innerHTML += `
-        <div class="item">
-          <h1${course.nivel === 'iniciante' ? ' class="free"' : ''}>${course.nome}</h1>
-          <div>
-            <p>${course.horas}hs</p>
-            ${course.gratuito ? '<p class="free">Gratuito</p>' : ''}
-          </div>
-          <ul>
-            ${course.tags.reduce((result, current) => {
-                return result += `<li>${current}</li>`;
-            }, '')}
-          </ul>
-        </div>
-      `;
-        });
+class Product {
+    name;
+    constructor(name) {
+        this.name = name;
     }
 }
-async function fetchCourses() {
-    const response = await fetch('https://api.origamid.dev/json/cursos.json');
-    const data = await response.json();
-    showCourses(data);
+class Book extends Product {
+    author;
+    constructor(name, author) {
+        super(name);
+        this.author = author;
+    }
 }
-fetchCourses();
+class Game extends Product {
+    players;
+    constructor(name, players) {
+        super(name);
+        this.players = players;
+    }
+}
+function searchProduct(search) {
+    if (search === 'The Hobbit') {
+        return new Book('The Hobbit', 'J. R. R. Tolkien');
+    }
+    if (search === 'Dark Souls') {
+        return new Game('Dark Souls', 1);
+    }
+    return null;
+}
+const product = searchProduct('Dark Souls');
+console.log(product);

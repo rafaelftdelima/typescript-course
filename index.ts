@@ -1,43 +1,40 @@
-interface Course {
-  nome: string,
-  horas: number,
-  nivel: 'iniciante' | 'avancado',
-  aulas: number,
-  gratuito: boolean,
-  idAulas: Array<number>,
-  tags: Array<string>,
-};
+class Product {
+  name: string;
 
-function showCourses(data: Array<Course>) {
-  const container = document.querySelector('div');
-
-  if (container) {
-    data.forEach((course) => {
-      container.innerHTML += `
-        <div class="item">
-          <h1${course.nivel === 'iniciante' ? ' class="free"' : ''}>${course.nome}</h1>
-          <div>
-            <p>${course.horas}hs</p>
-            ${course.gratuito ? '<p class="free">Gratuito</p>' : ''}
-          </div>
-          <ul>
-            ${
-              course.tags.reduce((result, current) => {
-                return result += `<li>${current}</li>`;
-              }, '')
-            }
-          </ul>
-        </div>
-      `
-    });
+  constructor(name: string) {
+    this.name = name;
   }
 }
 
-async function fetchCourses() {
-  const response = await fetch('https://api.origamid.dev/json/cursos.json');
-  const data = await response.json();
+class Book extends Product {
+  author: string;
 
-  showCourses(data);
+  constructor(name: string, author: string) {
+    super(name);
+    this.author = author;
+  }
 }
 
-fetchCourses();
+class Game extends Product {
+  players: number;
+
+  constructor(name: string, players: number) {
+    super(name);
+    this.players = players;
+  }
+}
+
+function searchProduct(search: string) {
+  if (search === 'The Hobbit') {
+    return new Book('The Hobbit', 'J. R. R. Tolkien');
+  } 
+  
+  if (search === 'Dark Souls') {
+    return new Game('Dark Souls', 1);
+  }
+
+  return null;
+}
+
+const product = searchProduct('Dark Souls');
+console.log(product);
