@@ -1,11 +1,22 @@
-const button = document.querySelector('button');
+const btn_mobile = document.querySelector('#btn-mobile');
 
-function handleClick(event: MouseEvent) {
-  const element = event.currentTarget;
+function toggleMenuMobile(this: HTMLButtonElement) {
+  const parentElement = this.parentElement;
 
-  if (element instanceof HTMLElement) {
-    console.log(element.innerHTML);
+  if (parentElement) {
+    if (parentElement.classList.contains('active')) {
+      parentElement.classList.remove('active');
+      this.setAttribute('aria-label', 'Abrir menu');
+      this.setAttribute('aria-expanded', 'false');
+    } else {
+      parentElement.classList.add('active');
+      this.setAttribute('aria-label', 'Fechar menu');
+      this.setAttribute('aria-expanded', 'true');
+    }
   }
 }
 
-button?.addEventListener('click', handleClick);
+if (btn_mobile) {
+  btn_mobile.addEventListener('click', toggleMenuMobile);
+  btn_mobile.addEventListener('', toggleMenuMobile);
+}
