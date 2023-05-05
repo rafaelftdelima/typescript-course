@@ -1,12 +1,13 @@
-const links = document.querySelectorAll('.link');
+const button = document.querySelector('button');
 
-function changeColorAndBorder(element: HTMLElement) {
-  element.style.color = '#fb5';
-  element.style.border = '2px solid #fb5';
+function handleClick(event: PointerEvent) {
+  console.log(event.pageX);
 }
 
-links.forEach((link) => {
-  if (link instanceof HTMLElement) {
-    changeColorAndBorder(link);
-  }
-})
+button?.addEventListener('pointerdown', handleClick);
+
+function handleScroll(event: Event) {
+  console.log(event);
+}
+
+window.addEventListener('scroll', handleScroll);
