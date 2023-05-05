@@ -1,29 +1,40 @@
-type device = {
-  name: string,
-  price: number,
-  keyboard: boolean,
+interface Company {
+  nome: string,
+  fundacao: number,
+  pais: string,
+};
+
+interface Product {
+  nome: string,
+  preco: number,
+  descricao: string,
+  garantia: string,
+  seguroAcidentes: boolean,
+  empresaFabricante: Company,
+  empresaMontadora: Company,
+};
+
+async function fetchProduct() {
+  const response = await fetch('https://api.origamid.dev/json/notebook.json');
+
+  const data = await response.json();
+  showProduct(data);
 }
 
-function fillerData(data: device) {
+function showProduct(data: Product) {
   document.body.innerHTML = `
     <div>
-      <h2>${data.name}</h2>
-      <p>${data.price}</p>
-      <p>Include keyboard: ${data.keyboard ? 'Sim' : 'Não'}</p>
+      <h2>${data.nome}</h2>
+      <p>${data.preco}</p>
+
+      <div>
+        <h3>${data.empresaFabricante.nome}</h3>
+      </div>
+      <div>
+        <h3>${data.empresaMontadora.nome}</h3>
+      </div>
     </div>
   `;
 }
 
-fillerData({
-  name: 'RedDragon',
-  price: 249.47,
-  keyboard: true
-});
-
-type categories = 'design' | 'code' | 'UX';
-
-function printCategory(category: categories) {
-  console.log(category);
-}
-
-printCategory('security');
+fetchProduct();
