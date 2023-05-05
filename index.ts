@@ -1,13 +1,7 @@
-function activeMenu(event: Event) {
-  if (event instanceof MouseEvent) {
-    console.log(event.pageX);
-  }
+const button = document.querySelector('button');
 
-  if (event instanceof TouchEvent) {
-    console.log(event.touches[0].pageX);
-  }
+function handleClick(this: HTMLButtonElement, event: MouseEvent) {
+  console.log(this);
 }
 
-document.documentElement.addEventListener('mousedown', activeMenu);
-document.documentElement.addEventListener('touchstart', activeMenu);
-window.addEventListener('keydown', activeMenu);
+button?.addEventListener('click', handleClick);

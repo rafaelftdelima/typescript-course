@@ -1,12 +1,6 @@
 "use strict";
-function activeMenu(event) {
-    if (event instanceof MouseEvent) {
-        console.log(event.pageX);
-    }
-    if (event instanceof TouchEvent) {
-        console.log(event.touches[0].pageX);
-    }
+const button = document.querySelector('button');
+function handleClick(event) {
+    console.log(this);
 }
-document.documentElement.addEventListener('mousedown', activeMenu);
-document.documentElement.addEventListener('touchstart', activeMenu);
-window.addEventListener('keydown', activeMenu);
+button?.addEventListener('click', handleClick);
