@@ -1,27 +1,14 @@
-const input_text = document.querySelector('input');
-
-const total = localStorage.getItem('total');
-
-if (input_text && total) {
-  input_text.value = total;
-  calculateBonus(Number(input_text.value));
-}
-
-function calculateBonus(value: number) {
-  const result_element = document.querySelector('p');
-
-  if (result_element) {
-    result_element.innerText = `ganho total: ${value + 100 - value * 0.2}`;
+function toNumber(value: number | string) {
+  if (typeof value === "number") {
+    return value;
+  } else if (typeof value === "string") {
+    return Number(value);
+  } else {
+    throw "value must be a number or string";
   }
 }
 
-function totalChanged() {
-  if (input_text) {
-    localStorage.setItem('total', input_text.value);
-    calculateBonus(Number(input_text.value));
-  }
-}
+console.log(toNumber(11));
+console.log(toNumber('11'));
 
-if (input_text) {
-  input_text.addEventListener('keyup', totalChanged);
-}
+console.log(toNumber(true));
